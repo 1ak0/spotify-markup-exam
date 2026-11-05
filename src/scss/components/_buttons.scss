@@ -1,0 +1,21 @@
+/* =====================
+   Buttons
+   ===================== */
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/* Round green play / pause button (player) */
+.play-button {
+  @include flex-center;
+  width: $play-button-size;
+  height: $play-button-size;
+  border: 0;
+  border-radius: 50%;
+  background: $color-primary;
+  color: $color-black;
+  transition: transform $transition-fast;
+
+  &:hover {
+    transform: scale(1.08);
+  }
+}

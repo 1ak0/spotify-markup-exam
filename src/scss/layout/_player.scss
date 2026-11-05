@@ -1,0 +1,131 @@
+/* =====================
+   Bottom Player (fixed)
+   ===================== */
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/* Mobile first: track info on the left, play controls on the right */
+.player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: $spacing-lg;
+  width: 100%;
+  height: $player-height;
+  padding: 0 $spacing-lg;
+  background: $color-player-bg;
+
+  @include laptop {
+    grid-template-columns: minmax(180px, 1fr) minmax(0, 722px) minmax(180px, 1fr);
+    padding-inline: $spacing-xl;
+  }
+}
+
+/* ----- Left: track info ----- */
+.player-left {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  min-width: 0;
+}
+
+.player-cover {
+  width: $player-cover-size;
+  height: $player-cover-size;
+  border-radius: $radius-xs;
+  object-fit: cover;
+}
+
+.player-track {
+  min-width: 0;
+  max-width: 120px;
+
+  &__title {
+    color: $color-white;
+    font-size: $font-size-sm;
+    @include truncate;
+  }
+
+  &__artist {
+    font-size: $font-size-sm;
+    @include truncate;
+  }
+}
+
+/* ----- Center: controls + progress ----- */
+.player-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+
+  @include laptop {
+    gap: $spacing-xl;
+  }
+
+  /* Secondary buttons only fit on desktop */
+  &__secondary {
+    display: none;
+
+    @include laptop {
+      display: flex;
+    }
+  }
+}
+
+.player-progress {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  font-size: $font-size-xs;
+
+  @include laptop {
+    display: flex;
+  }
+}
+
+/* Fake slider: track + filled part */
+.progress-bar {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: $color-progress-track;
+  overflow: hidden;
+
+  &__fill {
+    width: 45%;
+    height: 100%;
+    background: $color-white;
+  }
+
+  &--volume {
+    flex: 0 0 100px;
+
+    .progress-bar__fill {
+      width: 70%;
+    }
+  }
+}
+
+/* ----- Right: actions + volume ----- */
+.player-right {
+  display: none;
+
+  @include laptop {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: $spacing-md;
+  }
+}
