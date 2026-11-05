@@ -1,0 +1,35 @@
+/* =====================
+   Filter Chips
+   ===================== */
+@use "../abstracts/variables" as *;
+
+.filters {
+  display: flex;
+  gap: $spacing-md;
+  overflow-x: auto;
+}
+
+.filter-chip {
+  padding: $spacing-sm $spacing-md;
+  border: 0;
+  border-radius: $radius-sm;
+  background: $color-surface;
+  color: $color-text;
+  font-size: $font-size-sm;
+  white-space: nowrap;
+  transition: background $transition-base;
+
+  &:hover {
+    background: $color-surface-hover;
+  }
+
+  &--active {
+    background: $color-chip-active-bg;
+    color: $color-chip-active-text;
+    font-weight: $font-weight-semibold;
+
+    &:hover {
+      background: $color-chip-active-bg;
+    }
+  }
+}

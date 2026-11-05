@@ -1,0 +1,66 @@
+/* =====================
+   Cards (albums / playlists / mixes)
+   ===================== */
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/* Horizontal row; scrolls sideways inside itself if cards do not fit */
+.card-row {
+  display: flex;
+  gap: $card-gap;
+  padding-bottom: $spacing-md;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.card {
+  display: flex;
+  flex: 0 0 $card-width;
+  flex-direction: column;
+  gap: $spacing-sm;
+  min-width: 0;
+  padding: $spacing-md;
+  border-radius: $radius-sm;
+  background: $color-surface;
+  transition:
+    background $transition-base,
+    transform $transition-base;
+
+  &:hover {
+    background: $color-surface-hover;
+  }
+
+  &__cover {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: $radius-sm;
+    object-fit: cover;
+  }
+
+  &__title {
+    color: $color-text;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    @include truncate;
+  }
+
+  &__subtitle {
+    font-size: $font-size-xs;
+    line-height: 16px;
+    letter-spacing: $letter-spacing-base;
+    @include truncate;
+  }
+}
+
+/* Titled section that wraps a row of cards */
+.content-section {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-content;
+
+  &__title {
+    color: $color-text;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+  }
+}

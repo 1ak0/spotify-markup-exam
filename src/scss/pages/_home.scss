@@ -1,0 +1,11 @@
+/* =====================
+   Home Page
+   ===================== */
+@use "../abstracts/variables" as *;
+
+/* Content column of the Home page: keeps sections evenly spaced */
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xxl;
+}
