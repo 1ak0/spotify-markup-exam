@@ -1,0 +1,38 @@
+/* =====================
+   Mixins
+   ===================== */
+@use "./variables" as *;
+
+/* Centers children on both axes */
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Left / right split on one line */
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Single-line text with ellipsis */
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Mobile-first breakpoints: styles apply from this width UP */
+@mixin tablet {
+  @media (min-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media (min-width: $breakpoint-laptop) {
+    @content;
+  }
+}

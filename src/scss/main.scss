@@ -1,0 +1,27 @@
+/* =====================
+   Main SCSS Entry Point
+   ===================== */
+
+/* ABSTRACTS */
+@use "./abstracts/variables";
+@use "./abstracts/mixins";
+
+/* BASE */
+@use "./base/reset";
+@use "./base/globals";
+@use "./base/typography";
+
+/* COMPONENTS */
+@use "./components/buttons";
+@use "./components/icon-button";
+@use "./components/filter-chips";
+@use "./components/cards";
+
+/* LAYOUT */
+@use "./layout/page";
+@use "./layout/sidebar";
+@use "./layout/header";
+@use "./layout/player";
+
+/* PAGES */
+@use "./pages/home";
