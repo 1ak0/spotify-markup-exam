@@ -1,0 +1,46 @@
+/* =====================
+   Page Layout (wrapper + zones)
+   ===================== */
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/* Mobile first: one column (sidebar is hidden) */
+.app {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 100vh;
+  background: $color-bg;
+}
+
+/* Right-hand zone: header on top, main panel below */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  min-width: 0;
+}
+
+/* Bottom padding keeps the fixed player from covering content */
+.content {
+  flex: 1;
+  padding: $spacing-lg $spacing-lg calc(#{$player-height} + #{$spacing-xl});
+
+  @include tablet {
+    padding-inline: $spacing-xl;
+  }
+}
+
+/* Desktop: sidebar | main column, with a frame around the app */
+@include laptop {
+  .app {
+    grid-template-columns: $sidebar-width minmax(0, 1fr);
+    gap: $spacing-md;
+    padding: $spacing-lg $spacing-lg calc(#{$player-height} + #{$spacing-lg});
+  }
+
+  .content {
+    padding-bottom: $spacing-xl;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+  }
+}

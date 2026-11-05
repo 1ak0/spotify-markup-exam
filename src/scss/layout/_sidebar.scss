@@ -1,0 +1,65 @@
+/* =====================
+   Sidebar (left navigation)
+   ===================== */
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/* Hidden below desktop width */
+.sidebar {
+  display: none;
+
+  @include laptop {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-content;
+    align-self: start;
+    position: sticky;
+    top: $spacing-lg;
+    height: calc(100vh - #{$player-height} - #{$spacing-lg} * 2);
+    padding: $spacing-sm $spacing-lg;
+    overflow-y: auto;
+    background: $color-bg;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+  }
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  padding: $spacing-md;
+  color: $color-text;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+}
+
+.sidebar-list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  padding: $spacing-md;
+  border-radius: $radius-md;
+  font-size: $font-size-sm;
+  line-height: 19px;
+  letter-spacing: $letter-spacing-base;
+  transition:
+    color $transition-base,
+    background $transition-base;
+
+  &:hover {
+    background: $color-surface-hover;
+    color: $color-text;
+  }
+
+  /* Current page */
+  &--active {
+    background: $color-surface-hover;
+    color: $color-text;
+  }
+}
