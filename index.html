@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Spotify-inspired Home page layout built with HTML and SCSS." />
+    <title>Brainstorm Squad - Spotify Home</title>
+    <link rel="stylesheet" href="./dist/css/style.css" />
+  </head>
+  <body>
+    <!-- =====================
+         SVG icon sprite (used via <use href="#icon-name">)
+         ===================== -->
+    <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="icon-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="icon-discover" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+    <symbol id="icon-library" viewBox="0 0 24 24"><path d="M4 4v16M9 4v16M14 6l5 14"/></symbol>
+    <symbol id="icon-pin" viewBox="0 0 24 24"><path d="M12 17v5M9 3h6l-1 6 3 3v2H7v-2l3-3z"/></symbol>
+    <symbol id="icon-playlist" viewBox="0 0 24 24"><path d="M4 6h13M4 12h8M4 18h6M20 16V8"/><circle cx="18" cy="16" r="2"/></symbol>
+    <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+    <symbol id="icon-bookmark" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></symbol>
+    <symbol id="icon-album" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="icon-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+    <symbol id="icon-podcast" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+    <symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M20 17v4H6.5A2.5 2.5 0 0 1 4 18.5"/></symbol>
+    <symbol id="icon-artist" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+    <symbol id="icon-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+    <symbol id="icon-shuffle" viewBox="0 0 24 24"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></symbol>
+    <symbol id="icon-prev" viewBox="0 0 24 24"><path d="M19 20 9 12l10-8zM5 19V5"/></symbol>
+    <symbol id="icon-next" viewBox="0 0 24 24"><path d="m5 4 10 8-10 8zM19 5v14"/></symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></symbol>
+    <symbol id="icon-repeat" viewBox="0 0 24 24"><path d="m17 1 4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3"/></symbol>
+    <symbol id="icon-queue" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></symbol>
+    <symbol id="icon-device" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+    <symbol id="icon-volume" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4zM15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></symbol>
+    </svg>
+
+    <!-- =====================
+         App wrapper: sidebar + main column
+         ===================== -->
+    <div class="app">
+      <!-- ===== Sidebar ===== -->
+      <aside class="sidebar" aria-label="Sidebar">
+        <a class="sidebar-brand" href="./index.html">Georgian Spotify</a>
+
+        <nav aria-label="Library navigation">
+          <ul class="sidebar-list">
+          <li>
+            <a class="sidebar-item sidebar-item--active" href="#" aria-current="page">
+              <svg class="icon" aria-hidden="true"><use href="#icon-library" /></svg>
+              <span>My Library</span>
+            </a>
+          </li>
+          <li>
+            <a class="sidebar-item" href="#">
+              <svg class="icon" aria-hidden="true"><use href="#icon-pin" /></svg>
+              <span>Pins</span>
+            </a>
+          </li>
+          <li>
+            <a class="sidebar-item" href="#">
+              <svg class="icon" aria-hidden="true"><use href="#icon-playlist" /></svg>
+              <span>Playlists</span>
+            </a>
+          </li>
+          <li>
+            <a class="sidebar-item" href="#">
+              <svg class="icon" aria-hidden="true"><use href="#icon-heart" /></svg>
+              <span>Liked songs</span>
+            </a>
+          </li>
+          <li>
+            <a class="sidebar-item" href="#">
+              <svg class="icon" aria-hidden="true"><use href="#icon-bookmark" /></svg>
+              <span>Saves</span>
+            </a>
+          </li>
+          <li>
+            <a class="sidebar-item" href="#">
+              <svg class="icon" aria-hidden="true"><use href="#icon-album" /></svg>
+              <span>Albums</span>
+            </a>
+          </li>
+          <li>
+            <a class="sidebar-item" href="#">
+              <svg class="icon" aria-hidden="true"><use href="#icon-folder" /></svg>
+              <span>Folders</span>
+            </a>
+          </li>
+          <li>
+            <a class="sidebar-item" href="#">
+              <svg class="icon" aria-hidden="true"><use href="#icon-podcast" /></svg>
+              <span>Podcasts</span>
+            </a>
+          </li>
+          <li>
+            <a class="sidebar-item" href="#">
+              <svg class="icon" aria-hidden="true"><use href="#icon-book" /></svg>
+              <span>Audiobooks</span>
+            </a>
+          </li>
+          <li>
+            <a class="sidebar-item" href="#">
+              <svg class="icon" aria-hidden="true"><use href="#icon-artist" /></svg>
+              <span>Artists</span>
+            </a>
+          </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- ===== Main column: header + content ===== -->
+      <div class="page">
+        <!-- Top Header -->
+        <header class="header">
+          <nav class="header-nav" aria-label="Main navigation">
+            <a class="nav-link nav-link--active" href="./index.html" aria-current="page" aria-label="Home">
+              <svg class="icon" aria-hidden="true"><use href="#icon-home" /></svg>
+              <span class="nav-link__label">Home</span>
+            </a>
+            <a class="nav-link" href="#" aria-label="Discover">
+              <svg class="icon" aria-hidden="true"><use href="#icon-discover" /></svg>
+              <span class="nav-link__label">Discover</span>
+            </a>
+            <a class="nav-link" href="#" aria-label="Search">
+              <svg class="icon" aria-hidden="true"><use href="#icon-search" /></svg>
+              <span class="nav-link__label">Search</span>
+            </a>
+          </nav>
+
+          <div class="header-actions">
+            <button class="icon-button" type="button" aria-label="Notifications"><svg class="icon" aria-hidden="true"><use href="#icon-bell" /></svg></button>
+            <button class="icon-button" type="button" aria-label="Friend activity"><svg class="icon" aria-hidden="true"><use href="#icon-users" /></svg></button>
+            <button class="icon-button icon-button--bordered" type="button" aria-label="Profile"><svg class="icon" aria-hidden="true"><use href="#icon-artist" /></svg></button>
+          </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="content home">
+          <h1 class="visually-hidden">Home</h1>
+
+          <!-- Filter Chips -->
+          <div class="filters" role="group" aria-label="Content filters">
+            <button class="filter-chip filter-chip--active" type="button">All</button>
+            <button class="filter-chip" type="button">Music</button>
+            <button class="filter-chip" type="button">Podcasts</button>
+            <button class="filter-chip" type="button">Audiobooks</button>
+          </div>
+
+          <!-- Made For You -->
+          <section class="content-section">
+            <h2 class="content-section__title">Made For You</h2>
+            <div class="card-row">
+        <a class="card" href="#">
+          <img class="card__cover" src="dist/assets/img/image 2.svg" alt="Daily Mix 1 cover" width="170" height="170" loading="lazy" />
+          <h3 class="card__title">Daily Mix 1</h3>
+          <p class="card__subtitle">Arctic Monkeys, The Strokes and more</p>
+        </a>
+        <a class="card" href="#">
+          <img class="card__cover" src="dist/assets/img/image 6.svg" alt="Daily Mix 2 cover" width="170" height="170" loading="lazy" />
+          <h3 class="card__title">Daily Mix 2</h3>
+          <p class="card__subtitle">Nino Katamadze, Mgzavrebi and more</p>
+        </a>
+        <a class="card" href="#">
+          <img class="card__cover" src="dist/assets/img/image 8.svg" alt="Discover Weekly cover" width="170" height="170" loading="lazy" />
+          <h3 class="card__title">Discover Weekly</h3>
+          <p class="card__subtitle">New music, updated every Monday</p>
+        </a>
+        <a class="card" href="#">
+          <img class="card__cover" src="dist/assets/img/image 15.svg" alt="Release Radar cover" width="170" height="170" loading="lazy" />
+          <h3 class="card__title">Release Radar</h3>
+          <p class="card__subtitle">Catch all the latest releases</p>
+        </a>
+        <a class="card" href="#">
+          <img class="card__cover" src="dist/assets/img/Rectangle 6.svg" alt="On Repeat cover" width="170" height="170" loading="lazy" />
+          <h3 class="card__title">On Repeat</h3>
+          <p class="card__subtitle">Songs you love right now</p>
+        </a>
+        <a class="card" href="#">
+          <img class="card__cover" src="dist/assets/img/Frame 8.svg" alt="Time Capsule cover" width="170" height="170" loading="lazy" />
+          <h3 class="card__title">Time Capsule</h3>
+          <p class="card__subtitle">Songs from your past</p>
+        </a>
+        <a class="card" href="#">
+          <img class="card__cover" src="dist/assets/img/Frame 8-1.svg" alt="Chill Mix cover" width="170" height="170" loading="lazy" />
+          <h3 class="card__title">Chill Mix</h3>
+          <p class="card__subtitle">Relax with calm, easy tracks</p>
+        </a>
+        <a class="card" href="#">
+          <img class="card__cover" src="dist/assets/img/Sprite-0002 1.svg" alt="Focus Mix cover" width="170" height="170" loading="lazy" />
+          <h3 class="card__title">Focus Mix</h3>
+          <p class="card__subtitle">Stay in the zone with instrumentals</p>
+        </a>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- =====================
+         Bottom Player (fixed)
+         ===================== -->
+    <footer class="player" aria-label="Music player">
+      <!-- Left: track info -->
+      <div class="player-left">
+        <img class="player-cover" src="dist/assets/img/image 2.svg" alt="Daily Mix 1 cover" width="56" height="56" />
+        <div class="player-track">
+          <p class="player-track__title">Daily Mix 1</p>
+          <p class="player-track__artist">Arctic Monkeys</p>
+        </div>
+        <button class="icon-button" type="button" aria-label="Add to Liked songs"><svg class="icon icon--sm" aria-hidden="true"><use href="#icon-heart" /></svg></button>
+      </div>
+
+      <!-- Center: controls + progress -->
+      <div class="player-center">
+        <div class="player-controls">
+          <button class="icon-button player-controls__secondary" type="button" aria-label="Shuffle"><svg class="icon icon--sm" aria-hidden="true"><use href="#icon-shuffle" /></svg></button>
+          <button class="icon-button" type="button" aria-label="Previous"><svg class="icon icon--filled" aria-hidden="true"><use href="#icon-prev" /></svg></button>
+          <button class="play-button" type="button" aria-label="Play"><svg class="icon icon--filled icon--sm" aria-hidden="true"><use href="#icon-play" /></svg></button>
+          <button class="icon-button" type="button" aria-label="Next"><svg class="icon icon--filled" aria-hidden="true"><use href="#icon-next" /></svg></button>
+          <button class="icon-button player-controls__secondary" type="button" aria-label="Repeat"><svg class="icon icon--sm" aria-hidden="true"><use href="#icon-repeat" /></svg></button>
+        </div>
+        <div class="player-progress">
+          <span>1:12</span>
+          <div class="progress-bar" role="progressbar" aria-label="Track progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="35">
+            <div class="progress-bar__fill"></div>
+          </div>
+          <span>3:24</span>
+        </div>
+      </div>
+
+      <!-- Right: actions + volume -->
+      <div class="player-right">
+        <button class="icon-button" type="button" aria-label="Queue"><svg class="icon icon--sm" aria-hidden="true"><use href="#icon-queue" /></svg></button>
+        <button class="icon-button" type="button" aria-label="Connect to a device"><svg class="icon icon--sm" aria-hidden="true"><use href="#icon-device" /></svg></button>
+        <button class="icon-button" type="button" aria-label="Volume"><svg class="icon icon--sm" aria-hidden="true"><use href="#icon-volume" /></svg></button>
+        <div class="progress-bar progress-bar--volume" role="progressbar" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70">
+          <div class="progress-bar__fill"></div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
