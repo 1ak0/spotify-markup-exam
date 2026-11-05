@@ -1,0 +1,65 @@
+/* =====================
+   Top Header
+   ===================== */
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.header {
+  @include flex-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  min-height: $header-height;
+  padding: $spacing-sm $spacing-lg;
+  background: $color-bg;
+  border-bottom: 1px solid $color-border;
+
+  @include laptop {
+    padding: 0;
+    border-bottom: 0;
+  }
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  border-radius: $radius-md;
+  font-size: $font-size-sm;
+  transition:
+    color $transition-base,
+    background $transition-base;
+
+  &:hover {
+    color: $color-text;
+  }
+
+  /* Current page */
+  &--active {
+    background: $color-surface;
+    color: $color-text;
+  }
+
+  /* Text label is shown from tablet width up (icon-only on phones) */
+  &__label {
+    display: none;
+
+    @include tablet {
+      display: inline;
+      padding-right: $spacing-md;
+    }
+  }
+}

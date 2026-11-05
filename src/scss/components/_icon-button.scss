@@ -1,0 +1,48 @@
+/* =====================
+   Icons & Icon Buttons
+   ===================== */
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/* Base SVG icon: color follows the text color (currentColor) */
+.icon {
+  flex-shrink: 0;
+  width: $icon-size;
+  height: $icon-size;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  &--filled {
+    fill: currentColor;
+    stroke: none;
+  }
+
+  &--sm {
+    width: $icon-size-sm;
+    height: $icon-size-sm;
+  }
+}
+
+.icon-button {
+  @include flex-center;
+  padding: $spacing-sm;
+  border: 0;
+  border-radius: $radius-md;
+  background: transparent;
+  color: $color-text-muted;
+  transition:
+    color $transition-base,
+    background $transition-base;
+
+  &:hover {
+    color: $color-text;
+  }
+
+  &--bordered {
+    background: $color-surface;
+    color: $color-text;
+  }
+}
